@@ -1,0 +1,95 @@
+---
+title: "Clase_3"
+author: "Sebastian"
+date: "2024-09-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+rm(list=ls())
+
+df = read.csv("C:/Users/sebastianaa/OneDrive - Universidad de la Sabana (2)/Maestría Analítica Aplicada/Metodos_estadisticos_avanzados_1/Proyectos_R_Studio/DBs/Saber.csv")
+```
+
+A continuación, se realizará la la inspección y limpieza de la base de datos
+```{r}
+summary(df)
+
+```
+
+Identifica para la columna PUNT_INGLES si el % de NA es mayor al 10%
+
+```{r}
+library(dplyr)
+
+filas_NA = sum(!complete.cases(df))
+filas_NA
+filas_NA / nrow(df)
+df_limpio = na.omit(df)
+
+porcentaje_na = sum(is.na(df$PUNT_INGLES)) / nrow(df) * 100
+
+filas_NA = sum(!complete.cases(df_limpio))
+filas_NA
+
+View(df_limpio)
+```
+
+Seleccionar una muestra de n = 10000
+
+```{r}
+set.seed(123)
+n = 1000
+muestra = df_limpio[sample(1:nrow(df_limpio), n), ]
+View(muestra)
+```
+
+
+Elimina los NA si es mayor al 10%
+```{r}
+if(porcentaje_na) < 0.010{
+  df = df %>% filter(!is.na(PUNT_INGLES))
+  else {
+    print("Los NA representan 10% o más de los datos")
+  }
+}
+```
+Tabla de frecuencias
+```{r}
+tabla_frecu = table(muestra$ESTU_GENERO)
+View(tabla_frecu)
+prop.table(tabla_frecu) * 100
+
+```
+Hagamos un gráfico de barras
+
+```{r}
+barplot(tabla_frecu)
+```
+
+
+

@@ -1,0 +1,37 @@
+"0","library(dplyr)"
+"2","
+Adjuntando el paquete: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","filas_NA = sum(!complete.cases(df))"
+"0","filas_NA"
+"1","[1]"
+"1"," 14369"
+"1","
+"
+"0","filas_NA / nrow(df)"
+"1","[1]"
+"1"," 0.02846068"
+"1","
+"
+"0","df_limpio = na.omit(df)"
+"0",""
+"0","porcentaje_na = sum(is.na(df$PUNT_INGLES)) / nrow(df) * 100"
+"0",""
+"0","filas_NA = sum(!complete.cases(df_limpio))"
+"0","filas_NA"
+"1","[1]"
+"1"," 0"
+"1","
+"
+"0","View(df_limpio)"
