@@ -1,0 +1,42 @@
+---
+title: "Clase_4"
+output: html_document
+date: "2024-09-27"
+---
+
+Ejemplo 1:
+
+```{r}
+
+df2 = read.table("/home/sebastian/Documents/Maestría/Metodos_estadisticos_av/Datos/HIPOTESIS.txt", header = TRUE, sep = ",")
+
+
+```
+
+
+Ejemplo 2
+```{r}
+sust = table(df2$substance)
+sust = data.frame(sust)
+print(sust)
+
+library(ggplot2)
+ggplot(data = sust, aes(x="", y= Freq, fill = Var1))+
+  geom_bar(stat = "identity", width = 1)+
+  coord_polar(theta = "y")+
+  geom_text(aes(label = ..count..), stat = "count", position = position_stack(vjust = 0.5))+
+  labs(title = "Diagrama de coso")+
+  theme_void()
+
+
+library(ggplot2)
+ggplot(data = sust, aes(x="", y=Freq, fill=Var1)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar(theta="y") +
+  geom_text(aes(label=Freq), position=position_stack(vjust=0.5)) +  # Usar directamente Freq y ajustar vjust si es necesario
+  labs(title="Diagrama de coso") +
+  theme_void()
+
+
+```
+
