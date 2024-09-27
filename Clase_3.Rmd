@@ -92,4 +92,33 @@ barplot(tabla_frecu)
 ```
 
 
+Tarea: Hacer un diagrama de tortas y un barplot con la variable cualitativa elegida
+
+```{r}
+library(ggplot2)
+ggplot(data = muestra, aes(x = FAMI_ESTRATOVIVIENDA)) +
+  geom_bar(fill = "blue")+
+  geom_text(stat= "count", aes(label =..count..),vjust = -0.5)+
+  labs(title= "Grafico de barras de Estratos", x= "Estratos", y="Conteo de familias")+
+  theme_minimal()
+
+ggplot(data = muestra, aes(x= "", fill = FAMI_ESTRATOVIVIENDA)) +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y")+
+  geom_text(aes(label = ..count..), stat = "count", position = position_stack(vjust = 0.5))+
+  labs(title = "Diagrama de tortas de estrato") +
+  theme_void()
+library(ggplot2)
+
+
+ggplot(muestra, aes(x = PUNT_INGLES)) +
+  geom_histogram(bins = 30, fill = "blue", color = "black") + 
+  theme_minimal() +
+  labs(title = "Distribución de Puntajes de Inglés", x = "Puntaje", y = "Frecuencia")
+
+ggplot(muestra, aes( y = PUNT_INGLES )) +
+  geom_boxplot(fill= "blue")+
+  labs(title = "Distribución puntajes de inglés", x = "", y = "Distribución")
+```
+
 
