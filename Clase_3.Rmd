@@ -92,7 +92,7 @@ barplot(tabla_frecu)
 ```
 
 
-Tarea: Hacer un diagrama de tortas y un barplot con la variable cualitativa elegida
+Tarea: 1. Hacer un diagrama de tortas y un barplot con la variable cualitativa elegida
 
 ```{r}
 library(ggplot2)
@@ -115,10 +115,23 @@ ggplot(muestra, aes(x = PUNT_INGLES)) +
   geom_histogram(bins = 30, fill = "blue", color = "black") + 
   theme_minimal() +
   labs(title = "Distribución de Puntajes de Inglés", x = "Puntaje", y = "Frecuencia")
-
+ 
 ggplot(muestra, aes( y = PUNT_INGLES )) +
-  geom_boxplot(fill= "blue")+
-  labs(title = "Distribución puntajes de inglés", x = "", y = "Distribución")
+   geom_boxplot(fill= "blue")+
+   labs(title = "Distribución puntajes de inglés", x = "", y = "Distribución")
+ ```
+ 
 ```
 
+ 2. Hacer un histograma de frecuencia y un boxplot de una variable cuantitativa que encuentre en el dataset "Muestra"
 
+```{r}
+
+ggplot(muestra, aes(x = PUNT_INGLES)) +
+  geom_histogram(bins = 30, fill = "blue", color = "black") + 
+  theme_minimal() +
+  labs(title = "Distribución de Puntajes de Inglés", x = "Puntaje", y = "Frecuencia")
+ 
+ggplot(muestra, aes( y = PUNT_INGLES )) +
+   geom_boxplot(fill= "blue")+
+   labs(title = "Distribución puntajes de inglés", x = "", y = "Distribución")
