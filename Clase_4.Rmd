@@ -1,6 +1,8 @@
 ---
 title: "Clase_4"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2024-09-27"
 ---
 
@@ -38,5 +40,108 @@ ggplot(data = sust, aes(x="", y=Freq, fill=Var1)) +
   theme_void()
 
 
+```
+Definir valores para el intervalo de confianza PARA PROPORCIONES, que sirve para variables cualitativas
+
+Vamos a crear el intervalo de confianza para la muestra de 246 datos guardados en la variable n
+
+Usaremos la función prop.test que recibe los siguientes parametros
+
+prop.test(x, n, p = NULL,
+          alternative = c("two.sided", "less", "greater"),
+          conf.level = 0.95, correct = TRUE)
+          
+- Prop significa prueba de proporción en R studio
+- x es el vector del valor de la tabla "sust", es decir, le especifico la ubicación en x,y y me devuelve el número que esté allí
+- n el número de filas
+- p es el índice o valor de confianza
+- conf.level es el nivel de confianza
+
+```{r}
+n = nrow(df2)
+#Vamos a crear el intervalo de confianza para la muestra de 246 datos guardados en la variable n
+
+#Prop significa prueba de proporción en R studio
+#x es el vector del valor de la tabla "sust", es decir, le especifico la ubicación en x,y y me devuelve el número que esté allí
+#n el número de filas
+#conf.level es el nivel de confianza
+prop.test(sust[1,2], n , conf.level = 0.95, correct = FALSE)
+binom.test(94,n,conf.level = 0.95)
+
+
+
+```
+CONCLUSIÓN: Con un 95 de confianza, la proporción de personas que consumen alcohol está entre u 32% y un 44%. La probabilidad de que el verdadero valor no se encuentre en el intervalo es del 5%
+
+
+Ahora, vamos a encontrar el límite inferior:
+
+```{r}
+p = 94/n
+qnorm(0.025,lower.tail =  F)
+Li = p-qnorm(0.025, lower.tail= F )*(sqrt(p*(1-p)/n))
+```
+
+
+Ahora, vamos a hacer intervalos de confianza para variables cualitativas
+
+Usaremos la variable "physical1" para definir la media poblacional
+
+```{r}
+
+physical1 = t.test(df2$physical1, conf.level = 0.95)
+
+hist(df2$physical1)
+print(physical1)
+```
+```{r}
+
+t.test(df2$physical2, conf.level = 0.95)
+hist(df2$physical2)
+
+
+```
+```{r}
+t.test(df2$mental1, conf.level = 0.95)
+hist(df2$mental1)
+
+```
+
+```{r}
+
+t.test(df2$mental2, conf.level = 0.95)
+hist(df2$mental2)
+```
+Ahora vamos a hallar la Varianza a la variable physical1 de nuestro dataset
+
+```{r}
+chisq.test(df2$physical1)
+
+```
+
+Hallemos nuevamente el límite inferior a physical1 de nuestro dataset
+
+```{r}
+Li = (n-1) * var(df2$physical1)/qchisq(0.025, n-1, lower.tail = F)
+Ls = (n-1) * var(df2$physical1)/qchisq(0.025, n-1, lower.tail = T)
+
+print(Li)
+
+sqrt(Li)
+sqrt(Ls)
+```
+
+Ahorra la varianza de physical 
+
+```{r}
+
+chisq.test(df2$physical2)
+Li2 = (n-1) * var(df2$physical2)/qchisq(0.025, n-1, lower.tail = F)
+Ls2 = (n-1) * var(df2$physical2)/qchisq(0.025, n-1, lower.tail = T)
+
+print(Li2)
+
+sqrt(Li2)
+sqrt(Ls2)
 ```
 
