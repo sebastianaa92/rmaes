@@ -1,0 +1,98 @@
+---
+title: "Taller_Final"
+output: pdf_document
+date: "2024-10-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+Desarrollo del taller
+
+
+```{r}
+valores  = unique(muestra$ESTU_TIPODOCUMENTO)
+
+n = nrow(muestra)
+
+for (valor in valores) {
+  x = sum(muestra$ESTU_TIPODOCUMENTO == valor)
+}
+
+resultado = prop.test(x = x , n = n, conf.level = 0.95)
+
+cat("n\ Tipo de documento:" , valor)
+
+print(resultado)
+```
+
+Segunda variable categórica (ESTU_NACIONALIDAD)
+
+```{r}
+valores = unique(muestra$ESTU_NACIONALIDAD)
+n = nrow(muestra)
+
+for (valor in valores) {
+  x = sum(muestra$ESTU_NACIONALIDAD == valor)
+  
+  # Realizamos la prueba de proporción para cada nacionalidad contra 0.5
+  resultado = prop.test(x = x, n = n, p = 0.5, conf.level = 0.95)
+  
+  # Mostramos los resultados con print
+  print(paste("Nacionalidad:", valor))
+  print(resultado)
+}
+```
+
+IC de columna GENERO
+```{r}
+valores = unique(muestra$ESTU_GENERO)
+n = nrow(muestra)
+
+for (valor in valores){
+  x = sum(muestra$ESTU_GENERO == valor)
+  
+  resultado = prop.test(x = x, n = n, p = 0.5, conf.level = 0.95)
+
+print(paste("Genero:",valor))
+print(resultado)
+  
+}
+```
+
+IC para Puntaje de inglés
+
+```{r}
+
+
+#chisq.test(muestra$PUNT_INGLES)
+Li2 = (n-1) * var(muestra$PUNT_INGLES)/qchisq(0.025, n-1, lower.tail = F)
+Ls2 = (n-1) * var(muestra$PUNT_INGLES)/qchisq(0.025, n-1, lower.tail = T)
+
+sqrt(Li2)
+sqrt(Ls2)
+```
+
+```
+

@@ -1,4 +1,0 @@
-"0","set.seed(123)"
-"0","n = 1000"
-"0","muestra = df_limpio[sample(1:nrow(df_limpio), n), ]"
-"0","View(muestra)"

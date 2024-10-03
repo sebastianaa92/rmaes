@@ -3,6 +3,7 @@ title: "Clase_4"
 output:
   pdf_document: default
   html_document: default
+  word_document: default
 date: "2024-09-27"
 ---
 
@@ -23,11 +24,11 @@ sust = data.frame(sust)
 print(sust)
 
 library(ggplot2)
-ggplot(data = sust, aes(x="", y= Freq, fill = Var1))+
-  geom_bar(stat = "identity", width = 1)+
-  coord_polar(theta = "y")+
-  geom_text(aes(label = ..count..), stat = "count", position = position_stack(vjust = 0.5))+
-  labs(title = "Diagrama de coso")+
+ggplot(data = sust, aes(x = "", y = Freq, fill = Var1)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  geom_text(aes(label = Freq), position = position_stack(vjust = 0.5)) +  # Usar Freq directamente
+  labs(title = "Diagrama de sectores") +
   theme_void()
 
 
@@ -144,4 +145,7 @@ print(Li2)
 sqrt(Li2)
 sqrt(Ls2)
 ```
+
+DESARROLLO DE TALLER:
+
 

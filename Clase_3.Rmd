@@ -2,7 +2,9 @@
 title: "Clase_3"
 author: "Sebastian"
 date: "2024-09-20"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}

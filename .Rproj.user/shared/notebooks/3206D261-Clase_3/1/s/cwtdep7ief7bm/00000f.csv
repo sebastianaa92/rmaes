@@ -1,3 +1,0 @@
-"0","rm(list=ls())"
-"0",""
-"0","df = read.csv(""C:/Users/sebastianaa/OneDrive - Universidad de la Sabana (2)/Maestría Analítica Aplicada/Metodos_estadisticos_avanzados_1/Proyectos_R_Studio/DBs/Saber.csv"")"
