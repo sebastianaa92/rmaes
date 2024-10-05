@@ -22,6 +22,17 @@ datos = read.table("~/Documents/Maestría/Metodos_estadisticos_av/Datos/datosful
 
 clean_data = na.omit(datos)
 
+summary(clean_data$Salario)
+
+#% de confianza 95%
+#Margen de error de 3%
+#Desviación estandar 0.5025818
+#Media de salario 3.500.000 
+
+sd(clean_data$Salario)
+mean(clean_data$Salario)
+
+pnorm(1)- pnorm(1)
 
 
 ```
