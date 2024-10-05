@@ -1,0 +1,48 @@
+---
+title: "Clase_5"
+output: pdf_document
+date: "2024-10-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## COSO
+Procesamiento y cargue de la data
+
+```{r}
+rm(list = ls ())
+
+
+library(ggplot2)
+library(gridExtra)
+
+datos = read.csv("/home/sebastian/Downloads/Saber.csv")
+
+datos_limpios = na.omit(datos)
+set.seed(123)
+n=1000
+muestra = datos_limpios[sample(1:nrow(datos_limpios),n),]
+head(muestra)
+
+summary(muestra$PUNT_MATEMATICAS)
+table(muestra$ESTU_GENERO)
+```
+
+#Histograma de frecuencias
+
+
+```{r}
+histograma=ggplot(muestra, aes(x = PUNT_MATEMATICAS)) + 
+  geom_histogram(binwidth = 10, fill = "#861627", color = "white") + 
+  labs(title = "Histograma de Puntaje en Matemáticas", 
+       x = "Puntaje en Matemáticas", 
+       y = "Frecuencia") +
+  stat_bin(binwidth = 10, geom = "text", aes(label = after_stat(count)), vjust = -0.5, color = "black") + 
+  theme_minimal()+
+  ylim(c(0,350))+
+  geom_density(aes(y = ..count.. * 10), color = "blue", linewidth = 1) # La multiplicación ajusta la escala de la curva
+histograma
+```
+

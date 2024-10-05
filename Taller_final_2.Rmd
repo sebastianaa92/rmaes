@@ -1,0 +1,30 @@
+---
+title: "Taller_final_v2"
+output: pdf_document
+date: "2024-10-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## TALLER FINAL MÉTODOS ESTADÍSTICOS AVANZADOS
+
+1. Carga y preparación de los datos
+
+```{r}
+
+#Drop de variables en memoria
+rm(list = ls())
+
+#Carga del archivo para el taller
+datos = read.table("~/Documents/Maestría/Metodos_estadisticos_av/Datos/datosfull.txt")
+
+clean_data = na.omit(datos)
+
+
+
+```
+
+
+
